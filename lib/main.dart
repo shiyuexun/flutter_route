@@ -1,35 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_route/not_find_page.dart';
 import 'package:flutter_route/page1.dart';
+import 'package:flutter_route/page2.dart';
+import 'package:flutter_route/page3.dart';
+import 'package:flutter_route/page4.dart';
+import 'package:flutter_route/page5.dart';
+import 'package:flutter_route/router.dart';
+import 'package:flutter_route/services/navigation_service.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: Page1(),
-    );
+        title: 'Flutter Demo',
+        navigatorKey: NavigationService().navigatorKey,
+        routes: routes,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: Page2(),
+        initialRoute: root,
+        onGenerateRoute: generateRoute,
+        onUnknownRoute: (settings) =>
+            MaterialPageRoute(builder: (context) => NotFindPage()));
   }
 }
-
-
